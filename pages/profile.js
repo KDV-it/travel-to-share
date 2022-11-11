@@ -3,13 +3,17 @@ import { useRouter } from 'next/router';
 import Link from 'next/link'
 import Image from 'next/image';
 import Header from './components/Header';
+import Footer from './components/Footer';
+import {parse} from 'cookie'
+import {verify} from 'jsonwebtoken'
 
 import { GoMail } from "react-icons/go";
 import { BsFacebook } from "react-icons/bs";
 import { FaUser, FaGithub, FaLinkedin, FaSuitcase } from "react-icons/fa"
+import { Cookies } from 'react-cookie';
+import { getCookie } from 'cookies-next';
 const Profile = () => {
   const user = {
-
     favorite: ["636b1a40a48674ce7fd041c9",],
     age: 20,
     job: "IT",
@@ -196,6 +200,8 @@ const Profile = () => {
         </div>
 
       </form>
+
+      <Footer />
     </div>
   )
 }
@@ -204,4 +210,18 @@ const Profile = () => {
 export default Profile
 
 
+export async function getServerSideProps (context) {
+  
+  
+  const token = getCookie('KDV')
 
+  // const token = parsedCookies.KDV;
+  console.log(token);
+  console.log(process.env.JWT_SECRET_KEY);
+  let decode = verify(token, process.env.JWT_SECRET_KEY);
+  
+
+  console.log(decode.email)
+
+  return { props: {} }
+} 

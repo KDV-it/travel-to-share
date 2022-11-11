@@ -1,5 +1,8 @@
 import jwt from 'jsonwebtoken';
 import { serialize } from "cookie"
+import { FaVectorSquare } from 'react-icons/fa';
+import { getCookie, setCookie } from 'cookies-next';
+
 
 export default function isAuthenticated(req, res) {
   const { token } = req.query;
@@ -32,13 +35,19 @@ export default function isAuthenticated(req, res) {
     res.status(403).send('Token has expired.');
   }
 
-  const serialised = serialize(`KDV`, token, {
-    httpOnly: true,
-    sameSite: "strict",
-    maxAge: 60 * 60 * 24 * 30,
-    path: "/"
-  });
+  // const serialised = serialize(`KDV`, token, {
+  //   httpOnly: true,
+  //   sameSite: "strict",
+  //   maxAge: 60 * 60 * 24 * 30,
+  //   path: "/"
+  // });
+  setCookie('KDV', token.toString());
+
+
   console.log(token)
-  res.setHeader('Set-Cookie', serialised)
-  res.status(200).redirect(`/profile/${email}`)
+  console.log("[verify.js]", getCookie("KDV"));
+
+  // res.setHeader('Set-Cookie', serialised)
+
+  res.status(200).redirect(`/profile`)
 }
