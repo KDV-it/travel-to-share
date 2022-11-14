@@ -17,3 +17,4 @@ export default async function loginController(req, res) {
     return res.status(500).send({ message: 'Error: ' + err.message });
   }
 }
+

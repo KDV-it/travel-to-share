@@ -41,11 +41,11 @@ export default function isAuthenticated(req, res) {
   //   maxAge: 60 * 60 * 24 * 30,
   //   path: "/"
   // });
-  setCookie('KDV', token.toString());
+  setCookie('KDV', token.toString(), { req, res, maxAge: 60 * 60 * 24 * 30 })
 
 
-  console.log(token)
-  console.log("[verify.js]", getCookie("KDV"));
+  // console.log(token)
+  // console.log("[verify.js]", getCookie("KDV"));
 
   // res.setHeader('Set-Cookie', serialised)
 

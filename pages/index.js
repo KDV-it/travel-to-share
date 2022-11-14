@@ -1,10 +1,20 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Login from './login'
-import Card from  "./components/Card"
+import Card from "./components/Card"
 import cookie from 'cookie'
+import Header from './components/Header'
+import { useState } from 'react'
+import { getCookie } from 'cookies-next'
+import jwt from 'jsonwebtoken'
+import clientPromise from "../lib/mongodb";
 
-export default function Home(place) {
+
+export default function Home({ isSignin, user }) {
+  if(isSignin) {
+    const userParse = JSON.parse(user);
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,17 +23,40 @@ export default function Home(place) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className='flex flex-col justify-center items-center w-full h-full'>
+        <Header isSignin={isSignin} avatar='/Avatar800x800.png' />
         {
-          cookie.name === 'KDV' ? <p> Well come </p> :  <Login />
-        } 
-        
-      
-        
+          cookie.name === 'KDV' ? <p> Well come </p> : <Login />
+        }
+
+
+
       </main>
     </div>
   )
 }
 
+export async function getServerSideProps({ req, res }) {
+  const token = getCookie('KDV', { req, res })
+  let isSignin = false
+  if (token) {
+    let decode = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const email = decode.email
+    const client = await clientPromise
+    const db = client.db('travel-to-share');
+    const users = await db.collection('User').find({ email: email }).toArray()
+    const user = JSON.stringify(users[0])
+    isSignin = true
+    return {
+      props: {
+        isSignin,
+        user
+      }
+    }
+  }
+  return {
+    props: {isSignin}
+  }
 
+}
 
 
