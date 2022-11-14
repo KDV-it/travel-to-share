@@ -15,16 +15,9 @@ const Profile = ({ user, isSignin }) => {
 
   const userParse = JSON.parse(user);
 
-  const [isSetAvatar, setIsSetAvatar] = useState(false);
-
   const [readOnly, setReadOnly] = useState(false);
-  const [isEditProfile, setEditProfile] = useState(false)
   const [displayName, setDisplayName] = useState(userParse.name.toUpperCase())
-  const [srcImage, setSrcImage] = useState();
   const [srcAvt, setSrcAvt] = useState(userParse.avatar);
-  const [uploadData, setUploadData] = useState()
-  const router = useRouter();
-  const [data, setData] = useState(null)
 
   function handlerSetAvatar() {
     setIsSetAvatar(true);
@@ -104,14 +97,20 @@ const Profile = ({ user, isSignin }) => {
   // }
 
   return (
-    <div className='flex flex-col justify-between '>
+    <div className='flex flex-col justify-between '
+      style={{
+        backgroundImage: "url(/2774351.jpg)",
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+      }}
+    >
       {/* <Header /> */}
       <Header isSignin={isSignin} avatar={srcAvt ? srcAvt : '/avatarStandard.jpg'} />
 
       {/*  */}
       <div className='flex flex-row m-20 '>
         {/* avatar account and bio */}
-        <div className='flex flex-col justify-center items-center rounded-xl w-1/4 mr-10 mb-40 bg-gray-200 py-5'>
+        <div className='flex flex-col justify-center items-center rounded-xl w-1/4 mr-10 mb-40 bg-[#9fd7ff93] py-5 '>
 
           {/* Avatar */}
           {srcAvt ?
@@ -136,33 +135,33 @@ const Profile = ({ user, isSignin }) => {
           }
 
           {/* bio */}
-          <h1 className='mt-6 font-bold text-2xl uppercase text-gray-600'>{displayName}</h1>
-          <h3 className='text-lg uppercase text-gray-600'>{userParse.job}</h3>
+          <h1 className='mt-6 font-bold text-2xl uppercase text-[#1f1247]'>{displayName}</h1>
+          <h3 className='text-lg  text-[#2e2a3c]'>{userParse.job}</h3>
           <div className='mt-4 mx-6' >
             <h3 className='text-gray-500 mb-2 font-bold'>Bio</h3>
-            <div className="p-2 border-x border-y border-zinc-600 rounded-xl focus:border-slate-400 focus:border-2 bg-slate-200 h-40">{`${userParse.bio}`}</div>
+            <div className="p-2 border-x border-y border-zinc-600 rounded-xl  focus:border-2 bg-[#292626b1] text-[#ffffff] h-40">{`${userParse.bio}`}</div>
           </div>
         </div>
 
 
         {/* infor user */}
-        <form id="profileForm" className='w-3/4 grid grid-cols-4 gap-x-4 gap-y-1 p-7 bg-gray-50 rounded-2xl' method="POST" onChange={handleOnChange} onSubmit={handleSubmit} >
+        <form id="profileForm" className='w-3/4 grid grid-cols-4 gap-x-4 gap-y-1 p-7 bg-[#9fd7ff93] rounded-2xl' method="POST" onChange={handleOnChange} onSubmit={handleSubmit} >
           <div className='col-span-4'>
-            <h1 className='text-4xl font-bold'>Hello, {displayName}</h1>
+            <h1 className='text-4xl font-bold text-[#1f1247]'>Hello, {displayName}</h1>
           </div>
 
           <div className='flex flex-col col-span-2'>
-            <label className="ml-2  text-slate-400" htmlFor="name">Dispplay Name </label>
+            <label className="ml-2  text-[#2e2a3c]" htmlFor="name">Dispplay Name </label>
             <input className=" text-slate-900 border-2 rounded-lg border-slate-300 w-2/3 p-1 px-4 " type={'text'} name="name" readOnly={readOnly} placeholder={displayName} />
           </div>
 
           <div className='flex flex-col  col-span-2'>
-            <label className="ml-2  text-slate-400" htmlFor="age">Age</label>
+            <label className="ml-2  text-[#2e2a3c]" htmlFor="age">Age</label>
             <input className="border-2 rounded-lg border-slate-300  w-2/3 p-1 px-4" type={'text'} name="age" readOnly={readOnly} placeholder={userParse.age} />
           </div>
 
           <div className='flex flex-col col-span-2'>
-            <span className='flex flex-row items-center mb-2 text-slate-400 '>
+            <span className='flex flex-row items-center mb-2 text-[#2e2a3c] '>
               <FaUser className='text-xl' />
               <label className="ml-2 " htmlFor="gender">Gender</label>
             </span>
@@ -170,16 +169,16 @@ const Profile = ({ user, isSignin }) => {
           </div>
 
           <div className='flex flex-col col-span-2'>
-            <span className='flex flex-row items-center mb-2 text-slate-400 '>
+            <span className='flex flex-row items-center mb-2 text-[#2e2a3c] '>
               <FaSuitcase className='text-xl' />
               <label className="ml-2 " htmlFor="job">Job</label>
             </span>
             <input className="border-2 rounded-lg border-slate-300  w-2/3 p-1 px-4" type={'text'} name="job" readOnly={readOnly} placeholder={userParse.job} />
           </div>
 
-          <h1 className='col-span-4 font-bold text-slate-400'>Social Network</h1>
+          <h1 className='col-span-4 font-bold text-[#2e2a3c]'>Social Network</h1>
           <div className='flex flex-col col-span-2'>
-            <span className='flex flex-row items-center mb-2 text-slate-400 '>
+            <span className='flex flex-row items-center mb-2 text-[#2e2a3c] '>
               <GoMail className='text-xl' />
               <label className="ml-2 " htmlFor="name">Email</label>
             </span>
@@ -187,7 +186,7 @@ const Profile = ({ user, isSignin }) => {
           </div>
 
           <div className='flex flex-col col-span-2'>
-            <span className='flex flex-row items-center mb-2 text-slate-400 '>
+            <span className='flex flex-row items-center mb-2 text-[#2e2a3c] '>
               <BsFacebook className='text-xl' />
               <label className="ml-2 " htmlFor="facebook">Facebook</label>
             </span>
@@ -196,7 +195,7 @@ const Profile = ({ user, isSignin }) => {
 
 
           <div className='flex flex-col col-span-2'>
-            <span className='flex flex-row items-center mb-2 text-slate-400 '>
+            <span className='flex flex-row items-center mb-2 text-[#2e2a3c] '>
               <FaLinkedin className='text-xl' />
               <label className="ml-2 " htmlFor="linkedin">Linkedin</label>
             </span>
@@ -204,7 +203,7 @@ const Profile = ({ user, isSignin }) => {
           </div>
 
           <div className='flex flex-col col-span-2'>
-            <span className='flex flex-row items-center mb-2 text-slate-400 '>
+            <span className='flex flex-row items-center mb-2 text-[#2e2a3c] '>
               <FaGithub className='text-xl' />
               <label className="ml-2 " htmlFor="github">Github</label>
             </span>
@@ -212,8 +211,8 @@ const Profile = ({ user, isSignin }) => {
           </div>
 
           <div className='flex flex-col col-span-2'>
-            <span className='flex flex-row items-center mb-2 text-slate-400 '>
-              <label className="ml-2 " htmlFor="github">Bio</label>
+            <span className='flex flex-row items-center mb-2 text-[#2e2a3c] '>
+              <label className="ml-2 font-bold" htmlFor="github">Bio</label>
             </span>
             <textarea cols="12" rows=" 6" className="border-2 rounded-lg border-slate-300  w-2/3 p-1 px-4" name="github" readOnly={readOnly} placeholder={userParse.bio}></textarea>
           </div>

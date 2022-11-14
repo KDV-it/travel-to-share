@@ -37,7 +37,7 @@ export default function Header({ isSignin, avatar }) {
         {!isSignin ? <Link href="/login" className="bg-[#336ae1] py-2 px-4 rounded-xl text-white font-bold hover:bg-[#648add] cursor-pointer" >Login</Link>
           :
           <div className="flex flex-row justify-center items-center ">
-            <Link href={'/userProfile/profile'}>
+            <Link href={'/profile'}>
               <div
                 style={{
                   backgroundImage: `url(${avatar})`,

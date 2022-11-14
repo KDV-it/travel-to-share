@@ -11,8 +11,10 @@ import clientPromise from "../lib/mongodb";
 
 
 export default function Home({ isSignin, user }) {
+  let avatar = '/avatarStandard.jpg'
   if(isSignin) {
     const userParse = JSON.parse(user);
+    avatar = userParse.avatar
   }
 
   return (
@@ -23,9 +25,9 @@ export default function Home({ isSignin, user }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className='flex flex-col justify-center items-center w-full h-full'>
-        <Header isSignin={isSignin} avatar='/Avatar800x800.png' />
+        <Header isSignin={isSignin} avatar={avatar} />
         {
-          cookie.name === 'KDV' ? <p> Well come </p> : <Login />
+          isSignin ? <p> Well come </p> : <Login />
         }
 
 

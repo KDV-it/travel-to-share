@@ -67,41 +67,47 @@ const Avatar = () => {
       }
     }).then(() => {
       const result = confirm("Successfull!");
-      if(result === true || result === false) {
+      if (result === true || result === false) {
         router.push('/profile')
       }
-    }).catch((e) => {alert("Something went wrong!")})
+    }).catch((e) => { alert("Something went wrong!") })
 
     console.log(test);
     setSrcImage(data.secure_url);
     setUploadData(data);
   }
   return (
-    <>
+    <div className='flex justify-center items-center w-screen h-screen'
+      style={{
+        backgroundImage: "url(/2774351.jpg)",
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+      }}
+    >
       {/* <Header title="Profile - Avatar" isSignin={true} /> */}
-      <form method="POST" onChange={handleOnChange} onSubmit={handleSubmit}>
+      <form method="POST" onChange={handleOnChange} onSubmit={handleSubmit} className='w-1/4 h-1/2 bg-slate-400 rounded-lg flex flex-col justify-center items-center'>
         <div className='flex flex-col col-span-2' >
-          <label for='file' className='cursor-pointer underline hover:underline hover:text-sky-600 my-3'>Choose your avatar</label>
+          <label for='file' className={!isChoose ? 'cursor-pointer underline hover:underline hover:text-sky-600 my-3' : 'hidden'}>Choose your avatar</label>
           <input className="hidden" type={"file"} id="file" name="file" placeholder='' />
 
-          {srcImage && !uploadData && (
-            <>
-              <div
-                className='w-28 h-28 rounded-full my-4'
-                style={{
-                  backgroundImage: `url(${srcImage})`,
-                  backgroundPosition: 'center',
-                  backgroundSize: 'cover',
-                }}
-              >
-              </div>
-            </>
-          )}
         </div >
-        <button className={isChoose?'mt-4 col-span-4 w-1/6 bg-[#336ae1] py-2 px-4 rounded-xl text-white font-bold hover:bg-[#648add] cursor-pointer':"hidden"}>Upload Avatar</button>
-        <Link href={'/profile'}>Back to your profile </Link>
+        {srcImage && !uploadData && (
+          <>
+            <div
+              className='w-28 h-28 rounded-full my-4'
+              style={{
+                backgroundImage: `url(${srcImage})`,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+              }}
+            >
+            </div>
+          </>
+        )}
+        <button className={isChoose ? 'mt-4 mb-2 col-span-4 w-1/2 bg-[#336ae1] py-2 px-4 rounded-xl text-white font-bold hover:bg-[#648add] cursor-pointer' : "hidden"}>Upload Avatar</button>
+        <Link href={'/profile'} className='text-slate-50 underline font-bold hover:text-[#3d5a91]'>Back to your profile </Link>
       </form>
-    </>
+    </div>
   )
 }
 
