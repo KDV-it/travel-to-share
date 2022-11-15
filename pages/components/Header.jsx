@@ -17,21 +17,21 @@ export default function Header({ isSignin, avatar }) {
 
   return (
     <>
-      <nav className="flex w-screen h-16 items-center px-5 justify-around shadow-md bg-gray-200 opacity-90fixed">
+      <nav className="flex w-screen h-16 items-center px-5 justify-around shadow-md bg-[#ffffffa4]  z-10 fixed">
         {/* logo */}
         <div className="flex items-center hover:cursor-pointer">
           <Link href="/" className="flex justify-center items-center">
             <Image src="/logo.svg" width={65} height={65} alt='logo' />
           </Link>
           <div className="flex justify-center flex-col items-center">
-            <h1 className=" font-bold font-sansation text-[#88a6ea] ">K TRAVEL</h1>
+            <h1 className=" font-bold font-sansation text-[#2e4579] ">K TRAVEL</h1>
           </div>
         </div>
 
         <div className="w-2/5 flex flex-row justify-around text-white font-bold">
-          <Link href={'/'} className="px-8 py-2 rounded-2xl hover:shadow-lg hover:bg-[#88a6ea] hover:text-white text-gray-500">Home</Link>
-          <Link href={'/'} className="px-8 py-2 rounded-2xl hover:shadow-lg hover:bg-[#88a6ea] hover:text-white text-gray-500">Place</Link>
-          <Link href={'/'} className="px-8 py-2 rounded-2xl hover:shadow-lg hover:bg-[#88a6ea] hover:text-white text-gray-500">About</Link>
+          <Link href={'/'} className="px-8 py-2 rounded-2xl hover:shadow-lg hover:bg-[#88a6ea] hover:text-white text-[#2e4579]">Home</Link>
+          <Link href={'/'} className="px-8 py-2 rounded-2xl hover:shadow-lg hover:bg-[#88a6ea] hover:text-white text-[#2e4579]">Place</Link>
+          <Link href={'/'} className="px-8 py-2 rounded-2xl hover:shadow-lg hover:bg-[#88a6ea] hover:text-white text-[#2e4579]">About</Link>
         </div>
 
         {!isSignin ? <Link href="/login" className="bg-[#336ae1] py-2 px-4 rounded-xl text-white font-bold hover:bg-[#648add] cursor-pointer" >Login</Link>

@@ -225,26 +225,7 @@ const Profile = ({ user, isSignin }) => {
             </Link>
           </div>
 
-          {/* upload image */}
-          {/* <div className='flex flex-col col-span-2' >
-            <label for='file' className='cursor-pointer underline hover:underline hover:text-sky-600 my-3'>Choose your avatar</label>
-            <input className="hidden" type={"file"} id="file" name="file" placeholder='' />
-
-            {srcImage && !uploadData && (
-              <>
-                <div
-                  className='w-28 h-28 rounded-full my-4'
-                  style={{
-                    backgroundImage: `url(${srcImage})`,
-                    backgroundPosition: 'center',
-                    backgroundSize: 'cover',
-                  }}
-                >
-                </div>
-              </>
-            )}
-          </div > */}
-          {/* Lưu thông tin của user vào database */}
+         
           <button className='mt-4 col-span-4 w-1/6 bg-[#336ae1] py-2 px-4 rounded-xl text-white font-bold hover:bg-[#648add] cursor-pointer'>Save Profile</button>
         </form >
       </div >
